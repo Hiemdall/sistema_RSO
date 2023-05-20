@@ -12,6 +12,8 @@
 
         <input type="submit" name="sede" value="Sede">
         <input type="submit" name="serial" value="Serial">
+        <input type="submit" name="pdf" value="PDF">
+
     </form>
         <!-- Acciones de los botones -->
   <?php
@@ -26,6 +28,12 @@ if (isset($_POST['sede'])) {
    include('reporte_serial.php');
    //echo "Registro Editado";
    //include('modificar.php');
+
+  } else if (isset($_POST['pdf'])) {
+    // Código para manejar la edición de un registro
+    include('Ejemplo _pdf.php');
+    //echo "Registro Editado";
+    //include('modificar.php');    
 
 
 } else if (isset($_POST['eliminar'])) {

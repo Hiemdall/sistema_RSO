@@ -28,7 +28,7 @@ emprersa = ("Red de Salud del Oriente")
 # Michael Asprilla
 # Steven Gomez
 
-nom_tec = ("Denyer Bastida")
+nom_tec = ("Steven Gomez")
 print(f"Nombre del Técnico : ", nom_tec)
 
 # Fecha  y hora actual del registro
