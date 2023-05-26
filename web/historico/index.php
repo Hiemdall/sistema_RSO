@@ -5,32 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historial del Equipo</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
     
+    <link href="img/favicon.ico" rel="icon">
+
+<!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto:wght@500;700&display=swap"
+    rel="stylesheet">
+
+<!-- Icon Font Stylesheet -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 <body>
-    <h1>Historial del Equipo</h1>
-    <form method="post">
-
+  <div class="content">
+  
+  
     
-    <label for="serial">Serial:</label>
-    <input type="text" id="serial" name="serial">
+    <form method="post">
+    <h1>Historial del Equipo</h1>
+    
+    <input type="text" id="serial" name="serial" placeholder="Serial">
 
-    <label for="empresa">Empresa:</label>
-    <input type="text" id="empresa" name="empresa">
+    <input type="text" id="empresa" name="empresa" placeholder="Empresa">
 
-    <label for="sede">Sede:</label>
-    <input type="text" id="sede" name="sede">
+    <input type="text" id="sede" name="sede" placeholder="Sede">
 
-    <label for="departamento">Departamento:</label>
-    <input type="text" id="departamento" name="departamento">
+    <input type="text" id="departamento" name="departamento" placeholder="Departamento">
 
     <?php
         // Obtener la fecha actual
         $fechaActual = date('d/m/Y'); 
     ?>
-    <label for="fecha">Fecha:</label>
     <input type="text" id="fecha" name="fecha" value="<?php echo $fechaActual; ?>">
 
     <?php
@@ -39,12 +51,9 @@
         // Obtener la hora actual
         $horaActual = date('H:i:s A'); 
     ?>
-    <label for="hora">Hora:</label>
     <input type="text" id="hora" name="hora" value="<?php echo $horaActual; ?>">
-
-    <label for="tipo_mant">Tipo de Mantenimiento:</label>
     <select id="tipo_mant" name="tipo_mant">
-      <option value="">Seleccione una opción</option>
+      <option value="">Tipo de Mantenimiento:</option>
       <option value="Diagnóstico">Diagnóstico</option>
       <option value="Preventivo">Preventivo</option>
       <option value="Correctivo">Correctivo</option>
@@ -52,17 +61,16 @@
     </select>
 
     <label for="observacion">Observación:</label>
-    <textarea id="observacion" rows="4" name="observacion" style="width: 762px;"></textarea>
+    <textarea id="observacion" rows="4" name="observacion"></textarea>
 
     <label for="recomendaciones">Recomendaciones:</label>
-    <textarea id="recomendaciones" rows="4" name="recomendaciones" style="width: 762px;"></textarea>
+    <textarea id="recomendaciones" rows="4" name="recomendaciones"></textarea>
 <!--
     <label for="nom_tec">Nombre del Técnico:</label>
     <input type="text" id="nom_tec" name="nom_tec">-->
 
-    <label for="nom_tec">Nombre del Técnico:</label>
     <select id="nom_tec" name="nom_tec">
-      <option value="">Seleccione una opción</option>
+      <option value="">Nombre del Técnico:</option>
       <option value="Denyer Bastida">Denyer Bastida</option>
       <option value="Michael Asprilla">Michael Asprilla</option>
       <option value="Steven Gomez">Steven Gomez</option>
@@ -72,11 +80,14 @@
 
 
 <!-- Botones-->
-    <input type="submit" name="agregar" value="Guardar">
+  <button type="submit" name="agregar" value="Guardar">Guardar</button>  
   
     
-    
+  
   </form>
+  
+  
+
 <!-- Acciones de los botones -->
   <?php
   //Acciones de los submit
@@ -124,5 +135,9 @@ document.getElementById("serial").addEventListener("input", function() {
 });
 </script>
 
+</Div>
+<footer> 
+      <p>Desarrollado por Integratic © 2023</p>
+    </footer>
 </body>
 </html>

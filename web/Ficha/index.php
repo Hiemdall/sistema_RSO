@@ -2,27 +2,25 @@
 <html>
 <head>
     <title>Registro de Ficha Técnica</title>
-    <link rel="stylesheet" type="text/css" href="style1.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
     
 </head>
 <body>
-    <h1>Ficha Técnica del Equipo</h1>
+
+<div class="content">
+    
     <form method="post">
+    <h1>Ficha Técnica del Equipo</h1>
 
-        <label for="serial">Serial del Equipo:</label>
-        <input class="input_serial" type="text" id="serial" name="serial" >
+        <input class="input_serial" type="text" id="serial" name="serial" placeholder="Serial del Equipo:">
 
-        <label for="datos_empresa">Nombre de la Empresa:</label>
-        <input type="text" id="empresa" name="empresa">
+        <input type="text" id="empresa" name="empresa" placeholder="Nombre de la Empresa:">
         
-        <label for="sede">Sede:</label>
-        <input type="text" id="sede" name="sede" >
+        <input type="text" id="sede" name="sede" placeholder="Sede:">
         
-        <label for="departamento">Departamento:</label>
-        <input type="text" id="departamento" name="departamento" >
+        <input type="text" id="departamento" name="departamento" placeholder="Departamento:">
         
-        <label for="nom_usuario">Nombre de Usuario:</label>
-        <input type="text" id="nom_usuario" name="nom_usuario" >
+        <input type="text" id="nom_usuario" name="nom_usuario" placeholder="Nombre de Usuario:">
 
         <?php
         // Obtener la fecha actual
@@ -40,27 +38,21 @@
         <label for="hora">Hora:</label>
         <input type="text" id="hora" name="hora" value="<?php echo $horaActual; ?>">
         
-        <label for="tipo_equipo">Tipo de Equipo:</label>
         <select class="custom-select" id="tipo_equipo" name="tipo_equipo">
-        <option value="">Seleccione una opción</option>
+        <option value="">Tipo de Equipo:</option>
         <option value="Escritorio">Escritorio</option>
         <option value="Portátil">Portátil</option>
         </select>
+      
+        <input type="text" id="activo_fijo" name="activo_fijo" placeholder="Activo Fijo:">
         
-        <label for="activo_fijo">Activo Fijo:</label>
-        <input type="text" id="activo_fijo" name="activo_fijo" >
+        <input type="text" id="modelo" name="modelo" placeholder="Modelo:">
         
-        <label for="modelo">Modelo:</label>
-        <input type="text" id="modelo" name="modelo" >
+        <input type="text" id="fabricante" name="fabricante" placeholder="Fabricante:">
         
-        <label for="fabricante">Fabricante:</label>
-        <input type="text" id="fabricante" name="fabricante" >
+        <input type="text" id="nom_equipo" name="nom_equipo" placeholder="Nombre de Equipo:">
         
-        <label for="nom_equipo">Nombre de Equipo:</label>
-        <input type="text" id="nom_equipo" name="nom_equipo" >
-        
-        <label for="nom_procesador">Nombre de Procesador:</label>
-        <input type="text" id="nom_procesador" name="nom_procesador" >
+        <input type="text" id="nom_procesador" name="nom_procesador" placeholder="Nombre de Procesador:">
         
         <label for="ram">RAM:</label>
         <input type="text" id="ram" name="ram" placeholder="8">
@@ -74,9 +66,8 @@
         <label for="capacidad">Capacidad:</label>
         <input type="text" id="capacidad" name="capacidad" placeholder="500 GB">
 
-        <label for="nom_tec">Nombre del Técnico:</label>
         <select class="custom-select" id="nom_tec" name="nom_tec">
-        <option value="">Seleccione una opción</option>
+        <option value="">Nombre del Técnico:</option>
         <option value="Denyer Bastida">Denyer Bastida</option>
         <option value="Michael Asprilla">Michael Asprilla</option>
         <option value="Steven Gomez">Steven Gomez</option>
@@ -84,8 +75,9 @@
         <option value="Heimdall Rojas">Heimdall Rojas</option>
         </select>
         
-        <input type="submit" name="agregar" value="Guardar">
-        <input type="submit" name="editar" value="Editar">
+        <button type="submit" name="agregar" value="Guardar">Guardar</button>
+        <button type="submit" name="editar" value="Editar">Editar</button>
+        
     </form>
 
     <!-- Acciones de los botones -->
@@ -176,5 +168,11 @@ document.getElementById("serial").addEventListener("input", function() {
   xhr.send("input=" + input);
 });
 </script>
+
+</div>
+
+<footer> 
+      <p>Desarrollado por Integratic © 2023</p>
+    </footer>
 </body>
 </html>
