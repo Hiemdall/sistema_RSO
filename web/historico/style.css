@@ -84,7 +84,6 @@ body {
   }
 
   footer {
-    margin-top: 24px;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -98,4 +97,40 @@ body {
   
   footer p {
     font-size: 14px;
+  }
+
+  
+  .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  #text1 {
+    width: 400px; /* Ajusta el ancho según tus necesidades */
+    height: 150px; /* Ajusta el largo según tus necesidades */
+  }
+
+  .help-button {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(32, 98, 241);
+    color: white;
+    border-radius: 50%;
+    font-size: 20px;
+    position: absolute;
   }

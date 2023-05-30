@@ -22,17 +22,17 @@
     <input type="submit" name="buscar" value="Buscar">
 
     <?php if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['sede'])): ?>
-    <button type="submit" name="generar_pdf">Generar PDF</button>
+    <button type="submit" name="Formulario">Generar PDF</button>
     <?php endif; ?>
 
     <?php
     // Verificar si se ha enviado el formulario para generar el PDF
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['generar_pdf'])) {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['Formulario'])) {
     // Obtener el valor de la sede seleccionada
     $sede = $_POST['sede'];
 
     // Redirigir al archivo generar_pdf.php y pasar la sede como parámetro
-    header('Location: generar_pdf.php?sede=' . urlencode($sede));
+    header('Location: Formulario.php?sede=' . urlencode($sede));
     exit();
     }
     ?>

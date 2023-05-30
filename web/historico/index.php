@@ -7,17 +7,8 @@
     <title>Historial del Equipo</title>
     
     <link href="img/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-<!-- Google Web Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto:wght@500;700&display=swap"
-    rel="stylesheet">
-
-<!-- Icon Font Stylesheet -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
 <link rel="stylesheet" type="text/css" href="style.css">
@@ -63,6 +54,7 @@
     <label for="observacion">Observación:</label>
     <textarea id="observacion" rows="4" name="observacion"></textarea>
 
+
     <label for="recomendaciones">Recomendaciones:</label>
     <textarea id="recomendaciones" rows="4" name="recomendaciones"></textarea>
 <!--
@@ -86,7 +78,16 @@
   
   </form>
   
-  
+  <button class="help-button" id="openPopup" title="Ayuda"><i class="fas fa-question"></i></button>
+      
+      <div class="popup">
+          <h1>Ejemplos de descripciones para el informe</h1>
+        <p>Realizamos una limpieza exhaustiva de todos los componentes internos y externos del equipo, incluyendo ventiladores, disipadores de calor y filtros de aire. Se eliminó todo el polvo y los residuos acumulados, lo que mejorará el flujo de aire y reducirá el riesgo de sobrecalentamiento. Se reemplazó la pasta térmica en el procesador para garantizar una disipación adecuada del calor. La nueva pasta térmica ayudará a mantener la temperatura del procesador en niveles óptimos y evitará problemas de sobrecalentamiento en el futuro.</p>
+        
+        <button id="cerrar">Cerrar</button>  
+      </div>
+
+     <script src="script.js"></script>
 
 <!-- Acciones de los botones -->
   <?php

@@ -1,22 +1,53 @@
 <?php
+ // Llamar a el archivo conexion.php para hacer la conexion a la base de datos
+ include("conexion.php");
 
-$fecha = "21/05/2023";
-$hora = "12:59";
-$serial = "MXL7011DT7";
-$sede = "Diamante";
-$departamento = "Consultorio 100";
-$tecnico = "Denyer Bastidas";
-$usuario = "Yesica Barrios";
-$cpu = "Intel core i5-3470S";
-$ram = "8 Ram";
-$disco = "900 GB";
-$so = "Windows 10";
-$dispositivos = "fwjkefiwefjwkbfjkwebnfjkwbnefkjlwenblfjweiwedfñkaksdfweoijfddlkdmlfdkWKEOJFDWEFJKLÑMFDKWEJFOWENFWEKNHFOWEFWKLEFNADFKJSE";
+// Recibir datos del formulario
+//$search_term = "%" . $_POST['cedula'] . "%";
+$search_term = $_POST['sede'];
 
+
+// Preparar la consulta SQL
+// $sql = "SELECT * FROM datos WHERE cedula LIKE ?";
+/*
+// Ejemplo de código SQL, datos y cargo son las tablas de esa base de datos
+$sql = "SELECT datos.id_empleado, datos.ced_datos, datos.nom1_datos, datos.nom2_datos, datos.ape1_datos, datos.ape2_datos, datos.fec_ing_datos, cargo.nom_cargo, datos.sue_datos, datos.est_datos FROM datos
+INNER JOIN cargo ON datos.cargo = cargo.id_cargo WHERE ced_datos LIKE ?";
+*/
+
+$sql = "SELECT serial, empresa, sede, departamento, fecha, hora, tipo_mant, observacion, recomendaciones, nom_tec  FROM historial WHERE sede = '$sede'";
+
+// Preparar la sentencia
+$stmt = mysqli_prepare($conn, $sql);
+
+// Vincular los parámetros
+mysqli_stmt_bind_param($stmt, "s", $search_term);
+
+// Ejecutar la sentencia
+mysqli_stmt_execute($stmt);
+
+// Obtener resultados
+$result = mysqli_stmt_get_result($stmt);
+
+$fila = mysqli_fetch_assoc($result);
+
+$fecha_actual = new DateTime('now', new DateTimeZone('America/Bogota'));
+//$fecha_formateada = $fecha_actual->format('d/m/Y H:i:s');
+$fecha_formateada = $fecha_actual->format('m/d/Y');
+$meses1 = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+$fecha_convertida2 = date("d", strtotime($fecha_formateada)) . " de " . $meses1[date("n", strtotime($fecha_formateada))-1] . " de " . date("Y", strtotime($fecha_formateada));
+
+// Covertir el sueldo con el formato de moneda $
+$sueldo = $fila["sue_datos"];
+$sueldo_formateado = "$".number_format($sueldo, 2, ".", ",");
+
+// Fecha inicio del esmpleado
+$selectedDate = $fila["fec_ing_datos"];
+$meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+$fecha_convertida = date("d", strtotime($selectedDate)) . " de " . $meses[date("n", strtotime($selectedDate))-1] . " de " . date("Y", strtotime($selectedDate));
 
 // Crear el objeto dompdf
 require_once 'dompdf/autoload.inc.php';
-
 use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 
@@ -128,18 +159,18 @@ $html = '
   </style>
 </head>
 <body>
-  <p class="fecha">'.$fecha.'</p>
-  <p class="hora">'.$hora.'</p>
-  <p class="serial"> Serial: '.$serial.'</p>
-  <p class="sede">'.$sede.'</p>
-  <p class="departamento">'.$departamento.'</p>
-  <p class="tecnico">'.$tecnico.'</p>
-  <p class="usuario">'.$usuario.'</p>
-  <p class="cpu">'.$cpu.'</p>
-  <p class="ram">'.$ram.'</p>
-  <p class="disco">'.$disco.'</p>
-  <p class="so">'.$so.'</p>
-  <p class="dispositivos">'.$dispositivos.'</p>
+  <p class="fecha"></p>
+  <p class="hora"></p>
+  <p class="serial"> Serial:</p>
+  <p class="sede"></p>
+  <p class="departamento"></p>
+  <p class="tecnico"></p>
+  <p class="usuario"></p>
+  <p class="cpu"></p>
+  <p class="ram"></p>
+  <p class="disco"></p>
+  <p class="so"></p>
+  <p class="dispositivos"></p>
 
 </body>
 </html>
@@ -154,7 +185,7 @@ $dompdf->render();
 // Descargar el archivo PDF
 // Nombre del archivo:
 //$dompdf->stream("carta_de_trabajo.pdf");
-$dompdf->stream("Ficha_tecnica",[ "Attachment" => false]);
+$dompdf->stream("certificado_laboral_",[ "Attachment" => false]);
 
 
 
