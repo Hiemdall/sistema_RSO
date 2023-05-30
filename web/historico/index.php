@@ -5,13 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historial del Equipo</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
     
-    <link href="img/favicon.ico" rel="icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-
-<!-- Template Stylesheet -->
-<link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 <body>
@@ -34,6 +29,7 @@
         // Obtener la fecha actual
         $fechaActual = date('d/m/Y'); 
     ?>
+    <label for="fecha">Fecha:</label>
     <input type="text" id="fecha" name="fecha" value="<?php echo $fechaActual; ?>">
 
     <?php
@@ -42,7 +38,10 @@
         // Obtener la hora actual
         $horaActual = date('H:i:s A'); 
     ?>
+    <label for="hora">Hora:</label>
     <input type="text" id="hora" name="hora" value="<?php echo $horaActual; ?>">
+
+    <label for="tipo_mant">Tipo de Mantenimiento:</label>
     <select id="tipo_mant" name="tipo_mant">
       <option value="">Tipo de Mantenimiento:</option>
       <option value="Diagnóstico">Diagnóstico</option>
@@ -51,15 +50,16 @@
       <option value="Remoto">Remoto</option>
     </select>
 
+    <!--
     <label for="observacion">Observación:</label>
-    <textarea id="observacion" rows="4" name="observacion"></textarea>
+    <textarea id="observacion" rows="4" name="observacion" style="width: 762px;"></textarea>
 
 
     <label for="recomendaciones">Recomendaciones:</label>
     <textarea id="recomendaciones" rows="4" name="recomendaciones"></textarea>
 <!--
     <label for="nom_tec">Nombre del Técnico:</label>
-    <input type="text" id="nom_tec" name="nom_tec">-->
+    <input type="text" id="nom_tec" name="nom_tec"> -->
 
     <select id="nom_tec" name="nom_tec">
       <option value="">Nombre del Técnico:</option>
@@ -72,23 +72,11 @@
 
 
 <!-- Botones-->
-  <button type="submit" name="agregar" value="Guardar">Guardar</button>  
+    <input type="submit" name="agregar" value="Guardar">
   
     
-  
+    
   </form>
-  
-  <button class="help-button" id="openPopup" title="Ayuda"><i class="fas fa-question"></i></button>
-      
-      <div class="popup">
-          <h1>Ejemplos de descripciones para el informe</h1>
-        <p>Realizamos una limpieza exhaustiva de todos los componentes internos y externos del equipo, incluyendo ventiladores, disipadores de calor y filtros de aire. Se eliminó todo el polvo y los residuos acumulados, lo que mejorará el flujo de aire y reducirá el riesgo de sobrecalentamiento. Se reemplazó la pasta térmica en el procesador para garantizar una disipación adecuada del calor. La nueva pasta térmica ayudará a mantener la temperatura del procesador en niveles óptimos y evitará problemas de sobrecalentamiento en el futuro.</p>
-        
-        <button id="cerrar">Cerrar</button>  
-      </div>
-
-     <script src="script.js"></script>
-
 <!-- Acciones de los botones -->
   <?php
   //Acciones de los submit
@@ -113,6 +101,32 @@ if (isset($_POST['agregar'])) {
 
 <!--Script para buscar en tiempo real la cedula, llamando el archivo buscar.php-->
 <script>
+
+// Ventana emergente descripción del soporte
+document.getElementById('openPopup').addEventListener('click', function() {
+ 
+ var popup = document.querySelector('.popup');
+ popup.style.display = 'block';
+
+ var popupTexts = popup.getElementsByTagName('p');
+ for (var i = 0; i < popupTexts.length; i++) {
+   popupTexts[i].addEventListener('click', function() {
+     document.getElementById('text1').value = this.innerText;
+     popup.style.display = 'none';
+   });
+ }
+
+document.getElementById('cerrar').addEventListener('click', function() {
+popup.style.display = 'none';
+});
+
+return false; // Evita que el formulario se envíe
+});
+
+
+
+
+
 //La infomación de la base de datos va a cada input del formulario
 document.getElementById("serial").addEventListener("input", function() {
   var input = this.value;
@@ -136,9 +150,5 @@ document.getElementById("serial").addEventListener("input", function() {
 });
 </script>
 
-</Div>
-<footer> 
-      <p>Desarrollado por Integratic © 2023</p>
-    </footer>
 </body>
 </html>
