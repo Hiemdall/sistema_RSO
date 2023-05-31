@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Registro de Ficha Técnica</title>
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="inde.css">
     
 </head>
 <body>
