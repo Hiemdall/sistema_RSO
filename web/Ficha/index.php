@@ -1,71 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Ficha Técnica</title>
-    <link rel="stylesheet" type="text/css" href="inde.css">
-    
+    <link rel="stylesheet" type="text/css" href="form.css">
+    <link href="img/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 <body>
 
-<div class="content">
-    
+<div class="container">
+  <div class="logo">
+  <img src="logo.png" alt="logo">
+  </div>
+  <h1 class="form-title">Ficha Técnica del Equipo</h1>
     <form method="post">
-    <h1>Ficha Técnica del Equipo</h1>
+    <div class="main-user-info">
 
+        <div class="user-input-box">
         <input class="input_serial" type="text" id="serial" name="serial" placeholder="Serial del Equipo:">
+        </div>
 
+        <div class="user-input-box">
         <input type="text" id="empresa" name="empresa" placeholder="Nombre de la Empresa:">
-        
+        </div>
+
+        <div class="user-input-box">
         <input type="text" id="sede" name="sede" placeholder="Sede:">
-        
+        </div>
+
+        <div class="user-input-box">
         <input type="text" id="departamento" name="departamento" placeholder="Departamento:">
-        
+        </div>
+
+        <div class="user-input-box">
         <input type="text" id="nom_usuario" name="nom_usuario" placeholder="Nombre de Usuario:">
+        </div>
 
-        <?php
-        // Obtener la fecha actual
-        $fechaActual = date('d/m/Y'); 
-        ?>
-        <label for="fecha">Fecha:</label>
-        <input type="text" id="fecha" name="fecha" value="<?php echo $fechaActual; ?>">
+        <div class="user-input-box">
+        <input type="text" id="activo_fijo" name="activo_fijo" placeholder="Activo Fijo:">
+        </div>
 
-        <?php
-        // Establecer la zona horaria
-        date_default_timezone_set('America/Bogota');
-        // Obtener la hora actual
-        $horaActual = date('H:i:s A'); 
-        ?>
-        <label for="hora">Hora:</label>
-        <input type="text" id="hora" name="hora" value="<?php echo $horaActual; ?>">
-        
+        <div class="user-input-box">
+        <input type="text" id="modelo" name="modelo" placeholder="Modelo:">
+        </div>
+
+        <div class="user-input-box">
+        <input type="text" id="fabricante" name="fabricante" placeholder="Fabricante:">
+        </div>
+
+        <div class="user-input-box">
+        <input type="text" id="nom_equipo" name="nom_equipo" placeholder="Nombre de Equipo:">
+        </div>
+
+        <div class="user-input-box">
+        <input type="text" id="nom_procesador" name="nom_procesador" placeholder="Nombre de Procesador:">
+        </div>
+
+        <div class="user-input-box">
         <select class="custom-select" id="tipo_equipo" name="tipo_equipo">
         <option value="">Tipo de Equipo:</option>
         <option value="Escritorio">Escritorio</option>
         <option value="Portátil">Portátil</option>
         </select>
+        </div>
       
-        <input type="text" id="activo_fijo" name="activo_fijo" placeholder="Activo Fijo:">
-        
-        <input type="text" id="modelo" name="modelo" placeholder="Modelo:">
-        
-        <input type="text" id="fabricante" name="fabricante" placeholder="Fabricante:">
-        
-        <input type="text" id="nom_equipo" name="nom_equipo" placeholder="Nombre de Equipo:">
-        
-        <input type="text" id="nom_procesador" name="nom_procesador" placeholder="Nombre de Procesador:">
-        
-        <label for="ram">RAM:</label>
-        <input type="text" id="ram" name="ram" placeholder="8">
-        
-        <label for="slot">Slot:</label>
-        <input type="text" id="slot" name="slot" placeholder="2">
-        
-        <label for="puntero">Puntero:</label>
-        <input type="text" id="puntero" name="puntero" placeholder="C" >
-        
-        <label for="capacidad">Capacidad:</label>
-        <input type="text" id="capacidad" name="capacidad" placeholder="500 GB">
 
+        <div class="user-input-box">
         <select class="custom-select" id="nom_tec" name="nom_tec">
         <option value="">Nombre del Técnico:</option>
         <option value="Denyer Bastida">Denyer Bastida</option>
@@ -74,11 +78,60 @@
         <option value="Andrés Agudelo">Andrés Agudelo</option>
         <option value="Heimdall Rojas">Heimdall Rojas</option>
         </select>
+        </div>
+
+        <div class="user-input-box">
+        <?php
+        // Obtener la fecha actual
+        $fechaActual = date('d/m/Y'); 
+        ?>
+        <label for="fecha">Fecha:</label>
+        <input type="text" id="fecha" name="fecha" value="<?php echo $fechaActual; ?>">
+        </div>
+
+        <div class="user-input-box">
+        <?php
+        // Establecer la zona horaria
+        date_default_timezone_set('America/Bogota');
+        // Obtener la hora actual
+        $horaActual = date('H:i:s A'); 
+        ?>
+        <label for="hora">Hora:</label>
+        <input type="text" id="hora" name="hora" value="<?php echo $horaActual; ?>">
+        </div>
+
+
+        <div class="user-input-box">
+        <label for="ram">RAM:</label>
+        <input type="text" id="ram" name="ram" placeholder="8">
+        </div>
+
+        <div class="user-input-box">
+        <label for="slot">Slot:</label>
+        <input type="text" id="slot" name="slot" placeholder="2">
+        </div>
+
+        <div class="user-input-box">
+        <label for="puntero">Puntero:</label>
+        <input type="text" id="puntero" name="puntero" placeholder="C" >
+        </div>
+
+        <div class="user-input-box">
+        <label for="capacidad">Capacidad:</label>
+        <input type="text" id="capacidad" name="capacidad" placeholder="500 GB">
+        </div>
+
+
+
         
-        <button type="submit" name="agregar" value="Guardar">Guardar</button>
-        <button type="submit" name="editar" value="Editar">Editar</button>
+        <div class="form-submit-btn">
+        <input type="submit" name="agregar" value="Guardar"></input>
+        <input type="submit" name="editar" value="Editar"></input>
+        </div>
         
-    </form>
+
+  </div>
+  </form>
 
     <!-- Acciones de los botones -->
   <?php

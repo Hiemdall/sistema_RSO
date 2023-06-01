@@ -11,11 +11,12 @@
 
 
 <!-- Template Stylesheet -->
-<link rel="stylesheet" type="text/css" href="formulario.css">
+<link rel="stylesheet" type="text/css" href="form.css">
 
 </head>
 <body>
   <div class="container">
+  <img src="logo.png" alt="logo">
     <h1 class="form-title">Historial del Equipo</h1>
   
 
@@ -160,5 +161,8 @@ document.getElementById("serial").addEventListener("input", function() {
 </script>
 
 </Div>
+<footer> 
+      <p>Desarrollado por Integratic © 2023</p>
+    </footer>
 </body>
 </html>
