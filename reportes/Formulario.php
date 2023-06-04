@@ -1,180 +1,173 @@
 <?php
- // Llamar a el archivo conexion.php para hacer la conexion a la base de datos
- include("conexion.php");
-
-// Recibir datos del formulario
-//$search_term = "%" . $_POST['cedula'] . "%";
-$search_term = $_POST['sede'];
-
-
-// Preparar la consulta SQL
-// $sql = "SELECT * FROM datos WHERE cedula LIKE ?";
-/*
-// Ejemplo de código SQL, datos y cargo son las tablas de esa base de datos
-$sql = "SELECT datos.id_empleado, datos.ced_datos, datos.nom1_datos, datos.nom2_datos, datos.ape1_datos, datos.ape2_datos, datos.fec_ing_datos, cargo.nom_cargo, datos.sue_datos, datos.est_datos FROM datos
-INNER JOIN cargo ON datos.cargo = cargo.id_cargo WHERE ced_datos LIKE ?";
-*/
-
-$sql = "SELECT serial, empresa, sede, departamento, fecha, hora, tipo_mant, observacion, recomendaciones, nom_tec  FROM historial WHERE sede = '$sede'";
-
-// Preparar la sentencia
-$stmt = mysqli_prepare($conn, $sql);
-
-// Vincular los parámetros
-mysqli_stmt_bind_param($stmt, "s", $search_term);
-
-// Ejecutar la sentencia
-mysqli_stmt_execute($stmt);
-
-// Obtener resultados
-$result = mysqli_stmt_get_result($stmt);
-
-$fila = mysqli_fetch_assoc($result);
-
-$fecha_actual = new DateTime('now', new DateTimeZone('America/Bogota'));
-//$fecha_formateada = $fecha_actual->format('d/m/Y H:i:s');
-$fecha_formateada = $fecha_actual->format('m/d/Y');
-$meses1 = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
-$fecha_convertida2 = date("d", strtotime($fecha_formateada)) . " de " . $meses1[date("n", strtotime($fecha_formateada))-1] . " de " . date("Y", strtotime($fecha_formateada));
-
-// Covertir el sueldo con el formato de moneda $
-$sueldo = $fila["sue_datos"];
-$sueldo_formateado = "$".number_format($sueldo, 2, ".", ",");
-
-// Fecha inicio del esmpleado
-$selectedDate = $fila["fec_ing_datos"];
-$meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
-$fecha_convertida = date("d", strtotime($selectedDate)) . " de " . $meses[date("n", strtotime($selectedDate))-1] . " de " . date("Y", strtotime($selectedDate));
-
-// Crear el objeto dompdf
 require_once 'dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 
-// Creamos el HTML que se convertirá en PDF
-$html = '
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-    body{
-    background-image: url(Fichatecnica.jpg);
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-size: 100%;
-    margin: 1px;
-    }
+$conexion = mysqli_connect("localhost", "root", "", "soporte");
 
-    .fecha{
-      position: absolute;
-      margin: 0;
-      top: 10px;
-      left: 85%;
-    }
+$resultado = mysqli_query($conexion, "SELECT * FROM historial");
+$adi = "rgergjkj";
+$visita = "999";
 
-    .hora{
-      position: absolute;
-      margin: 0;
-      top: 30px;
-      left: 85%;
-    }
 
-    .serial{
-      position: absolute;
-      margin: 0;
-      top: 57px;
-      left: 77%;
-    }
+$html = '<html>';
+$html = '<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+body{
+background-image: url(FichaHistorica.jpg);
+background-size: cover; 
+background-repeat: no-repeat;
+background-size: 100%;
+}
 
-    .sede{
-      position: absolute;
-      margin: 0;
-      top: 142px;
-      left: 8%;
-    }
+.empresa{
+  position: absolute;
+  margin: 0;
+  top: 15px;
+  left: 16%;
+}
 
-    .departamento{
-      position: absolute;
-      margin: 0;
-      top: 142px;
-      left: 61%;
-    }
+.fecha{
+  position: absolute;
+  margin: 0;
+  top: 10px;
+  left: 85%;
+}
 
-    .tecnico{
+.hora{
+  position: absolute;
+  margin: 0;
+  top: 31px;
+  left: 83%;
+  font-size: 14px;
+}
+
+.serial{
+  position: absolute;
+  margin: 0;
+  top: 57px;
+  left: 77%;
+}
+
+.sede{
+  position: absolute;
+  margin: 0;
+  top: 142px;
+  left: 8%;
+}
+
+.departamento{
+  position: absolute;
+  margin: 0;
+  top: 142px;
+  left: 61%;
+}
+
+.tecnico{
+  position: absolute;
+  margin: 0;
+  top: 172px;
+  left: 12%;
+}
+
+.usuario{
+  position: absolute;
+  margin: 0;
+  top: 172px;
+  left: 55%;
+}
+
+.tip_mant{
+  position: absolute;
+  margin: 0;
+  top: 5.5%;
+  left: 16%;
+}
+
+.observacion{
+  position: absolute;
+  margin: 0;
+  top: 42%;
+  left: 2%;
+}
+
+.recomendaciones{
+  position: absolute;
+  margin: 0;
+  top: 58%;
+  left: 2%;
+}
+
+.adi{
+  position: absolute;
+  margin: 0;
+  top: 20%;
+  left: 2%;
+}
+
+img{
+  position: absolute;
+  margin: 0;
+  top: 79%;
+  left: 65%;
+}
+.visita{
       position: absolute;
       margin: 0;
       top: 172px;
-      left: 12%;
+      left: 47%;
     }
 
-    .usuario{
-      position: absolute;
+.logo_form{
+  width: 75px; 
+  height: 75px;
+  position: absolute;
       margin: 0;
-      top: 172px;
-      left: 55%;
-    }
+      top: 1%;
+      left: 2%;
+}
 
-    .cpu{
-      position: absolute;
-      margin: 0;
-      top: 23%;
-      left: 8%;
-    }
+</style>
+</head>';
 
-    .ram{
-      position: absolute;
-      margin: 0;
-      top: 23%;
-      left: 57%;
-    }
+while ($fila = mysqli_fetch_assoc($resultado)) {
+    $html .= '
+    <body>
+  <img src="logo_form.jpg" alt="" class="logo_form">
+  <p class="empresa">'. $fila['empresa'] .'</p>
+  <p class="sede">'. $fila['sede'] .'</p>
+  <p class="fecha">'. $fila['fecha'] .'</p>
+  <p class="hora">'. $fila['hora'] .'</p>
+  <p class="serial"> Serial: '. $fila['serial'] .'</p>
+  <p class="departamento">'. $fila['departamento'] .'</p>
+  <p class="tip_mant">Tipo de Mantenimiento: '. $fila['tipo_mant'] .'</p>
+  <p class="visita">N.visita: '.$fila['visita'].'</p>
+  <p class="observacion"> Observaciones: '. $fila['observacion'] .'</p>
+  <p class="recomendaciones"> Recomendaciones: '. $fila['recomendaciones'] .'</p>
+  <p class="adi">Acepto utilizar este servicio únicamente para fines legales y de acuerdo con las leyes y regulaciones aplicables.
+  Entiendo y acepto que toda la información proporcionada en este formulario es precisa y verídica.
+  Reconozco que cualquier uso indebido o fraudulento de este servicio puede resultar en la cancelación de mi cuenta y posibles acciones legales.
+  Acepto que la información proporcionada en este formulario puede ser utilizada y procesada de acuerdo con la política de privacidad.
+  Entiendo se reserva el derecho de modificar o actualizar estos términos de servicio en cualquier momento y es mi responsabilidad revisarlos periódicamente.</p>
+  <p class="tecnico">'. $fila['nom_tec'] .'</p>';
 
-    .disco{
-      position: absolute;
-      margin: 0;
-      top: 26%;
-      left: 7%;
-    }
+  $tecnico = $fila['nom_tec'];
+  $imagenFirma = obtenerImagenFirma($tecnico);
+ 
+  $html .= '<img src="' . $imagenFirma . '" alt="Firma del técnico" style="width: 150px; height: 75px;">';
 
-    .so{
-      position: absolute;
-      margin: 0;
-      top: 26%;
-      left: 56%;
-    }
 
-    .dispositivos{
-      position: absolute;
-      top: 29%;
-      left: 3%;
-      width: 660px;
-      overflow: hidden;
-      word-wrap: break-word;
-    }
-    
+  // Salta a la otra pagina si hay mas registros
+  $html .= '<div style="page-break-after: always;"></div>';
 
-  </style>
-</head>
-<body>
-  <p class="fecha"></p>
-  <p class="hora"></p>
-  <p class="serial"> Serial:</p>
-  <p class="sede"></p>
-  <p class="departamento"></p>
-  <p class="tecnico"></p>
-  <p class="usuario"></p>
-  <p class="cpu"></p>
-  <p class="ram"></p>
-  <p class="disco"></p>
-  <p class="so"></p>
-  <p class="dispositivos"></p>
+  $html .= '</body>';
+}
 
-</body>
-</html>
-';
+$html .= '</html>';
 
 $dompdf->setPaper('A4', 'portrait');
 // Renderizar el contenido HTML en PDF
@@ -185,9 +178,24 @@ $dompdf->render();
 // Descargar el archivo PDF
 // Nombre del archivo:
 //$dompdf->stream("carta_de_trabajo.pdf");
-$dompdf->stream("certificado_laboral_",[ "Attachment" => false]);
+$dompdf->stream("Historico",[ "Attachment" => false]);
 
+function obtenerImagenFirma($tecnico) {
+  // Puedes implementar tu lógica para obtener la ruta de la imagen de firma según el técnico
+  // Por ejemplo, puedes tener un array asociativo donde las claves sean los nombres de los técnicos y los valores sean las rutas de las imágenes
+  $firmaTecnicos = array(
+      'Heimdall Rojas' => 'firmas/heimdall.jpg',
+      'Denyer Bastida' => 'firmas/denyer.jpg',
+     
+      // Agrega más técnicos y sus respectivas rutas de imagen aquí
+  );
 
-
-
+  // Verificar si el técnico tiene una firma definida
+  if (isset($firmaTecnicos[$tecnico])) {
+      return $firmaTecnicos[$tecnico];
+  } else {
+      // Si no hay una firma definida para el técnico, puedes retornar una imagen por defecto o una ruta genérica
+      return 'ruta/a/la/imagen/firma_default.jpg';
+  }
+}
 ?>
