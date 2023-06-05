@@ -6,7 +6,7 @@ popup.style.display = 'block';
 var popupTexts = popup.getElementsByTagName('p');
 for (var i = 0; i < popupTexts.length; i++) {
 popupTexts[i].addEventListener('click', function() {
-document.getElementById('text1').value = this.innerText;
+document.getElementById('observacion').value = this.innerText;
 popup.style.display = 'none';
 });
 }

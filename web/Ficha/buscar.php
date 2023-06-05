@@ -7,7 +7,7 @@ include("conexion.php");
 $serial = $_POST["input"];
 
 // Consulta en la base de datos
-$sql_datos = "SELECT empresa, sede, departamento, nom_usuario, fecha, hora, tipo_equipo, activo_fijo, modelo, fabricante, nom_equipo, nom_procesador, ram, slot, nombre
+$sql_datos = "SELECT empresa, sede, departamento, nom_usuario, fecha, hora, tipo_equipo, activo_fijo, modelo, fabricante, nom_equipo, nom_procesador, ram, slot, nombre, ip_equipo ,componentes_add
 FROM datos WHERE serial = '$serial'";
 
 // Consulta en la tabla "disco"
@@ -38,6 +38,7 @@ if (mysqli_num_rows($result_datos) > 0 && mysqli_num_rows($result_disco) > 0) {
         $hora = $row_datos["hora"];
         $tipo_equipo = $row_datos["tipo_equipo"];
         $activo_fijo = $row_datos["activo_fijo"];
+        $ip_equipo = $row_datos["ip_equipo"];
         $modelo = $row_datos["modelo"];
         $fabricante = $row_datos["fabricante"];
         $nom_equipo = $row_datos["nom_equipo"];
@@ -45,6 +46,7 @@ if (mysqli_num_rows($result_datos) > 0 && mysqli_num_rows($result_disco) > 0) {
         $ram = $row_datos["ram"];
         $slot = $row_datos["slot"];
         $nombre = $row_datos["nombre"];
+        $componentes_add = $row_datos["componentes_add"];
 
         // Variables de la tabla "disco"
         $puntero = $row_disco["puntero"];
@@ -64,6 +66,7 @@ if (mysqli_num_rows($result_datos) > 0 && mysqli_num_rows($result_disco) > 0) {
         "hora" => $hora,
         "tipo_equipo" => $tipo_equipo,
         "activo_fijo" => $activo_fijo,
+        "ip_equipo" => $ip_equipo,
         "modelo" => $modelo,
         "fabricante" => $fabricante,
         "nom_equipo" => $nom_equipo,
@@ -71,6 +74,7 @@ if (mysqli_num_rows($result_datos) > 0 && mysqli_num_rows($result_disco) > 0) {
         "ram" => $ram,
         "slot" => $slot,
         "nom_tec" => $nombre,
+        "comp_add" => $componentes_add,
         "puntero" => $puntero,
         "capacidad" => $capacidad,
               
@@ -97,6 +101,7 @@ if (mysqli_num_rows($result_datos) > 0 && mysqli_num_rows($result_disco) > 0) {
        "hora" => ($hora_actual != "") ? $hora_actual : date("H:i:s"),
        "tipo_equipo" => "",
        "activo_fijo" => "",
+       "ip_equipo" => "",
        "modelo" => "",
        "fabricante" => "",
        "nom_equipo" => "",
@@ -104,6 +109,7 @@ if (mysqli_num_rows($result_datos) > 0 && mysqli_num_rows($result_disco) > 0) {
        "ram" => "",
        "slot" => "",
        "nom_tec" => "",
+       "comp_add" => "",
        "puntero" => "",
        "capacidad" => "",
        

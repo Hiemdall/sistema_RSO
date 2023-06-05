@@ -13,6 +13,7 @@ $fecha = $_POST['fecha'];
 $hora = $_POST['hora'];
 $serial = $_POST['serial'];
 $activo_fijo = $_POST['activo_fijo'];
+$ip_equipo = $_POST['ip_equipo'];
 $tipo_equipo = $_POST['tipo_equipo'];
 $modelo = $_POST['modelo'];
 $fabricante = $_POST['fabricante'];
@@ -20,13 +21,14 @@ $nom_equipo = $_POST['nom_equipo'];
 $nom_procesador = $_POST['nom_procesador'];
 $ram = $_POST['ram'];
 $slot = $_POST['slot'];
+$componentes_add = $_POST['comp_add'];
 $puntero = $_POST['puntero'];
 $capacidad = $_POST['capacidad'];
 
 
 // Insertar los valores en la tabla datos_empresa
-$sql_datos_empresa = "INSERT INTO datos(empresa, sede, departamento, nombre, nom_usuario, fecha, hora, serial, activo_fijo, tipo_equipo, modelo, fabricante, nom_equipo, nom_procesador, ram, slot) 
-VALUES ('$datos_empresa', '$sede', '$departamento', '$nombre', '$nom_usuario', '$fecha', '$hora', '$serial', '$activo_fijo', '$tipo_equipo', '$modelo', '$fabricante', '$nom_equipo', '$nom_procesador', '$ram', '$slot')";
+$sql_datos_empresa = "INSERT INTO datos(empresa, sede, departamento, nombre, nom_usuario, fecha, hora, serial, activo_fijo, ip_equipo , tipo_equipo, modelo, fabricante, nom_equipo, nom_procesador, ram, slot, componentes_add) 
+VALUES ('$datos_empresa', '$sede', '$departamento', '$nombre', '$nom_usuario', '$fecha', '$hora', '$serial', '$activo_fijo', '$ip_equipo', '$tipo_equipo', '$modelo', '$fabricante', '$nom_equipo', '$nom_procesador', '$ram', '$slot', '$componentes_add')";
 
 if ($conn->query($sql_datos_empresa) === TRUE) {
     // Obtener el ID del último registro insertado en datos_empresa

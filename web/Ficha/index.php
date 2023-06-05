@@ -57,6 +57,10 @@
         </div>
 
         <div class="user-input-box">
+        <input type="text" id="ip_equipo" name="ip_equipo" placeholder="IP del Equipo:">
+        </div>
+
+        <div class="user-input-box">
         <input type="text" id="nom_procesador" name="nom_procesador" placeholder="Nombre de Procesador:">
         </div>
 
@@ -122,6 +126,10 @@
         </div>
 
 
+        <label for="comp_add">Componentes Adicionales:</label>
+        <textarea id="comp_add" rows="4" name="comp_add" style="width: 762px;"></textarea>  
+
+
 
         
         <div class="form-submit-btn">
@@ -178,11 +186,13 @@ document.getElementById("serial").addEventListener("input", function() {
         document.getElementById("modelo").value = response.modelo;
         document.getElementById("fabricante").value = response.fabricante;
         document.getElementById("nom_equipo").value = response.nom_equipo;
+        document.getElementById("ip_equipo").value = response.ip_equipo;
         document.getElementById("nom_procesador").value = response.nom_procesador;
         document.getElementById("ram").value = response.ram;
         document.getElementById("slot").value = response.slot;
         document.getElementById("puntero").value = response.puntero;
         document.getElementById("capacidad").value = response.capacidad;
+        document.getElementById("comp_add").value = response.comp_add;
 
         //**************************** Select tipo de equipo *************************** */
         // Este código se utiliza para cargar el combobox con los valores de la base de datos
