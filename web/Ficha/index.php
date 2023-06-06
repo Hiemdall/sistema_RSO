@@ -65,6 +65,18 @@
         </div>
 
         <div class="user-input-box">
+        <select class="custom-select" id="so" name="so">
+        <option value="">Sistema Operaivo:</option>
+        <option value="Windows 10">Windows 10</option>
+        <option value="Windows 11">Windows 11</option>
+        <option value="Windows 8">Windows 8</option>
+        <option value="Windows 7">Windows 7</option>
+        <option value="Linux">Linux</option>
+        <option value="macOS">macOS</option>
+        </select>
+        </div>
+
+        <div class="user-input-box">
         <select class="custom-select" id="tipo_equipo" name="tipo_equipo">
         <option value="">Tipo de Equipo:</option>
         <option value="Escritorio">Escritorio</option>
@@ -133,7 +145,7 @@
 
         
         <div class="form-submit-btn">
-        <input type="submit" name="agregar" value="Guardar"></input>
+        <input type="submit" id="guardarBtn" name="agregar" value="Guardar"></input>
         <input type="submit" name="editar" value="Editar"></input>
         </div>
         
@@ -162,6 +174,8 @@ if (isset($_POST['agregar'])) {
  // include('eliminar.php');
 }
 ?>
+
+
 
 <!--Script para buscar en tiempo real la cedula, llamando el archivo buscar.php-->
 <script>
@@ -194,6 +208,22 @@ document.getElementById("serial").addEventListener("input", function() {
         document.getElementById("capacidad").value = response.capacidad;
         document.getElementById("comp_add").value = response.comp_add;
 
+        //**************************** Select sistema operativo *************************** */
+        // Este código se utiliza para cargar el combobox con los valores de la base de datos
+        // Obtener el elemento select
+        const selectElementSo = document.getElementById("so");
+       // Buscar si existe una opción con el valor de response.tipo_equipo
+       let optionSo = selectElementSo.querySelector(`option[value="${response.so}"]`);
+       if (!optionSo) {
+       // Si no existe la opción, agregar una nueva
+       optionSo = document.createElement("option");
+       optionSo.value = response.so;
+       optionSo.textContent = response.so;
+       selectElementSo.appendChild(optionSo);
+      }   
+      // Establecer el atributo selected de la opción
+      optionSo.selected = true;
+
         //**************************** Select tipo de equipo *************************** */
         // Este código se utiliza para cargar el combobox con los valores de la base de datos
         // Obtener el elemento select
@@ -224,7 +254,8 @@ document.getElementById("serial").addEventListener("input", function() {
     }
     // Establecer el atributo selected de la opción
     optionNomTec.selected = true;
-        
+        // Deshabilitar el botón de guardar si el equipo existe
+    
       }
     }
   };

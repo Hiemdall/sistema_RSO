@@ -7,7 +7,7 @@ include("conexion.php");
 $serial = $_POST["input"];
 
 // Consulta en la base de datos
-$sql_datos = "SELECT empresa, sede, departamento, nom_usuario, fecha, hora, tipo_equipo, activo_fijo, modelo, fabricante, nom_equipo, nom_procesador, ram, slot, nombre, ip_equipo ,componentes_add
+$sql_datos = "SELECT empresa, sede, departamento, nom_usuario, fecha, hora, tipo_equipo, activo_fijo, modelo, fabricante, nom_equipo, nom_procesador, ram, slot, nombre, ip_equipo ,componentes_add, so
 FROM datos WHERE serial = '$serial'";
 
 // Consulta en la tabla "disco"
@@ -28,6 +28,7 @@ $result_disco = mysqli_query($conn, $sql_disco);
 if (mysqli_num_rows($result_datos) > 0 && mysqli_num_rows($result_disco) > 0) {
     $row_datos = mysqli_fetch_assoc($result_datos);
     $row_disco = mysqli_fetch_assoc($result_disco);
+    
 
     //Variable   ->     Campo (BD)
         $empresa = $row_datos["empresa"];
@@ -43,6 +44,7 @@ if (mysqli_num_rows($result_datos) > 0 && mysqli_num_rows($result_disco) > 0) {
         $fabricante = $row_datos["fabricante"];
         $nom_equipo = $row_datos["nom_equipo"];
         $nom_procesador = $row_datos["nom_procesador"];
+        $so = $row_datos["so"];
         $ram = $row_datos["ram"];
         $slot = $row_datos["slot"];
         $nombre = $row_datos["nombre"];
@@ -71,12 +73,14 @@ if (mysqli_num_rows($result_datos) > 0 && mysqli_num_rows($result_disco) > 0) {
         "fabricante" => $fabricante,
         "nom_equipo" => $nom_equipo,
         "nom_procesador" => $nom_procesador,
+        "so" => $so,
         "ram" => $ram,
         "slot" => $slot,
         "nom_tec" => $nombre,
         "comp_add" => $componentes_add,
         "puntero" => $puntero,
         "capacidad" => $capacidad,
+        
               
     );
     
@@ -86,7 +90,6 @@ if (mysqli_num_rows($result_datos) > 0 && mysqli_num_rows($result_disco) > 0) {
 } else {
     //Coloca vacio los input
     //echo json_encode(array("exists" => true, "empresa" => "","sede" => "", "departamento" => "","nom_usuario" => "","fecha" => "","hora" => ""));
-    
     date_default_timezone_set('America/Bogota');
     $fecha_actual = date('d/m/Y');
     $hora_actual = date('H:i:s A');
@@ -106,6 +109,7 @@ if (mysqli_num_rows($result_datos) > 0 && mysqli_num_rows($result_disco) > 0) {
        "fabricante" => "",
        "nom_equipo" => "",
        "nom_procesador" => "",
+       "so" => "",
        "ram" => "",
        "slot" => "",
        "nom_tec" => "",

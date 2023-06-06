@@ -5,6 +5,7 @@ $dompdf = new Dompdf();
 
 $conexion = mysqli_connect("localhost", "root", "", "soporte_rso");
 
+
 $resultado = mysqli_query($conexion, "SELECT * FROM historial");
 $adi = "rgergjkj";
 $visita = "999";
