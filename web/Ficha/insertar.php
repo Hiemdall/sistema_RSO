@@ -23,7 +23,7 @@ $so = $_POST['so'];
 $ram = $_POST['ram'];
 $slot = $_POST['slot'];
 $componentes_add = $_POST['comp_add'];
-$puntero = $_POST['puntero'];
+
 $capacidad = $_POST['capacidad'];
 
 
@@ -36,7 +36,7 @@ if ($conn->query($sql_datos_empresa) === TRUE) {
     $datos_empresa_id = $conn->insert_id;
     
     // Insertar los valores en la tabla disco
-    $sql_disco = "INSERT INTO disco (puntero, capacidad, serial_id) VALUES ('$puntero', '$capacidad', '$serial')";
+    $sql_disco = "INSERT INTO disco (capacidad, serial_id) VALUES ('$capacidad', '$serial')";
     
     if ($conn->query($sql_disco) === TRUE) {
         // Generar una alerta

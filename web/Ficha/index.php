@@ -13,58 +13,100 @@
 <body>
 
 <div class="container">
-  <div class="logo">
-  <img src="logo.png" alt="logo">
-  </div>
-  <h1 class="form-title">Ficha Técnica del Equipo</h1>
+
     <form method="post">
+    
+    <div class="logo">
+  <img src="logo.png" alt="logo">
+  <div class="fecha">
+
+  <?php
+$fechaActual = date('d-m-y');
+?>
+<label for="fecha">Fecha:</label>
+<input type="text" id="fecha" name="fecha" value="<?php echo $fechaActual; ?>" class="no-border" readonly style="border: none;  background-color: transparent; outline: none; ">
+
+
+    <?php
+        // Establecer la zona horaria
+        date_default_timezone_set('America/Bogota');
+        // Obtener la hora actual
+        $horaActual = date('H:i:s A'); 
+    ?>
+    <label for="hora">Hora:</label>
+    <input type="text" id="hora" name="hora" value="<?php echo $horaActual; ?>" class="no-border" readonly style="border: none;  background-color: transparent; outline: none; ">
+
+    </div>
+  </div>
+
+
+
+  <h1 class="form-title">Ficha Técnica del Equipo</h1>
+  
+
+  
+    
     <div class="main-user-info">
 
-        <div class="user-input-box">
-        <input class="input_serial" type="text" id="serial" name="serial" placeholder="Serial del Equipo:">
+    
+
+        <div class="user-input-box" style="width: 100% !important; justify-content: start;">
+        <label for="serial" style="margin: 5px;">Serial:</label>
+        <input class="input_serial" type="text" id="serial" name="serial" placeholder="Serial del Equipo:" style="width: 28% !important; margin: 5px;">
         </div>
 
         <div class="user-input-box">
+        <label for="empresa" style="margin: 5px;">Empresa:</label>
         <input type="text" id="empresa" name="empresa" placeholder="Nombre de la Empresa:">
         </div>
 
         <div class="user-input-box">
+        <label for="sede" style="margin: 5px;">Sede:</label>
         <input type="text" id="sede" name="sede" placeholder="Sede:">
         </div>
 
         <div class="user-input-box">
+        <label for="departamento" style="margin: 5px;">Departamento:</label>
         <input type="text" id="departamento" name="departamento" placeholder="Departamento:">
         </div>
 
         <div class="user-input-box">
+        <label for="usuario" style="margin: 5px;">Usuario:</label>
         <input type="text" id="nom_usuario" name="nom_usuario" placeholder="Nombre de Usuario:">
         </div>
 
         <div class="user-input-box">
+        <label for="activo" style="margin: 5px;">Activo Fijo:</label>
         <input type="text" id="activo_fijo" name="activo_fijo" placeholder="Activo Fijo:">
         </div>
 
         <div class="user-input-box">
+        <label for="modelo" style="margin: 5px;">Modelo:</label>
         <input type="text" id="modelo" name="modelo" placeholder="Modelo:">
         </div>
 
         <div class="user-input-box">
+        <label for="fabricante" style="margin: 5px;">Fabricante:</label>
         <input type="text" id="fabricante" name="fabricante" placeholder="Fabricante:">
         </div>
 
         <div class="user-input-box">
+        <label for="n_equipo" style="margin: 5px;">Nombre de Equipo:</label>
         <input type="text" id="nom_equipo" name="nom_equipo" placeholder="Nombre de Equipo:">
         </div>
 
         <div class="user-input-box">
+        <label for="IP" style="margin: 5px;">IP del Equipo:</label>
         <input type="text" id="ip_equipo" name="ip_equipo" placeholder="IP del Equipo:">
         </div>
 
         <div class="user-input-box">
+        <label for="procesador" style="margin: 5px;">Procesador:</label>
         <input type="text" id="nom_procesador" name="nom_procesador" placeholder="Nombre de Procesador:">
         </div>
 
         <div class="user-input-box">
+        <label for="" style="margin: 5px;">Sistema Operaivo:</label>
         <select class="custom-select" id="so" name="so">
         <option value="">Sistema Operaivo:</option>
         <option value="Windows 10">Windows 10</option>
@@ -77,6 +119,7 @@
         </div>
 
         <div class="user-input-box">
+        <label for="" style="margin: 5px;">Tipo de Equipo:</label>
         <select class="custom-select" id="tipo_equipo" name="tipo_equipo">
         <option value="">Tipo de Equipo:</option>
         <option value="Escritorio">Escritorio</option>
@@ -85,36 +128,9 @@
         </div>
       
 
-        <div class="user-input-box">
-        <select class="custom-select" id="nom_tec" name="nom_tec">
-        <option value="">Nombre del Técnico:</option>
-        <option value="Denyer Bastida">Denyer Bastida</option>
-        <option value="Michael Asprilla">Michael Asprilla</option>
-        <option value="Steven Gomez">Steven Gomez</option>
-        <option value="Andrés Agudelo">Andrés Agudelo</option>
-        <option value="Heimdall Rojas">Heimdall Rojas</option>
-        </select>
-        </div>
 
-        <div class="user-input-box">
-        <?php
-        // Obtener la fecha actual
-        $fechaActual = date('d/m/Y'); 
-        ?>
-        <label for="fecha">Fecha:</label>
-        <input type="text" id="fecha" name="fecha" value="<?php echo $fechaActual; ?>">
-        </div>
 
-        <div class="user-input-box">
-        <?php
-        // Establecer la zona horaria
-        date_default_timezone_set('America/Bogota');
-        // Obtener la hora actual
-        $horaActual = date('H:i:s A'); 
-        ?>
-        <label for="hora">Hora:</label>
-        <input type="text" id="hora" name="hora" value="<?php echo $horaActual; ?>">
-        </div>
+        
 
 
         <div class="user-input-box">
@@ -128,22 +144,28 @@
         </div>
 
         <div class="user-input-box">
-        <label for="puntero">Puntero:</label>
-        <input type="text" id="puntero" name="puntero" placeholder="C" >
+        <label for="capacidad">Disco:</label>
+        <input type="text" id="capacidad" name="capacidad" placeholder="500 GB HDD">
+        </div>
+
+        <div class="user-input-box" style="width: 100% !important;">
+        <label for="comp_add">Componentes Adicionales:</label>
+        <textarea id="comp_add" rows="4" name="comp_add"></textarea>  
         </div>
 
         <div class="user-input-box">
-        <label for="capacidad">Capacidad:</label>
-        <input type="text" id="capacidad" name="capacidad" placeholder="500 GB">
+        <label for="" style="margin: 5px;">Nombre del Técnico:</label>
+        <select class="custom-select" id="nom_tec" name="nom_tec">
+        <option value="">Nombre del Técnico:</option>
+        <option value="Denyer Bastida">Denyer Bastida</option>
+        <option value="Michael Asprilla">Michael Asprilla</option>
+        <option value="Steven Gomez">Steven Gomez</option>
+        <option value="Andrés Agudelo">Andrés Agudelo</option>
+        <option value="Heimdall Rojas">Heimdall Rojas</option>
+        </select>
         </div>
 
 
-        <label for="comp_add">Componentes Adicionales:</label>
-        <textarea id="comp_add" rows="4" name="comp_add" style="width: 762px;"></textarea>  
-
-
-
-        
         <div class="form-submit-btn">
         <input type="submit" id="guardarBtn" name="agregar" value="Guardar"></input>
         <input type="submit" name="editar" value="Editar"></input>
